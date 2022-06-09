@@ -12,22 +12,21 @@ I = ['E', 'K', 'M', 'F', 'L', 'G', 'D', 'Q', 'V', 'Z', 'N', 'T', 'O', 'W', 'Y', 
 def i_walze(text, pos):
     text = list(text)
     text_i_liste = []
-    print(pos)
+
     a = 0 + I.index(pos)
     b = 0
 
     for i in text:
-        #print(a)
-        #print(b)
+
         if i == " ":
             text_i_liste.append(" ")
             continue
         ab_in = ab.index(i)
-        #print(ab_in)
+
         if int((ab_in + a) / 26) >= 1:
             b = int(int(int(ab_in + a) / 26) * 26)
         x = I[ab_in+a-b]
-        #print(x)
+
         text_i_liste.append(x)
         a += 1
 

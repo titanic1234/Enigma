@@ -28,14 +28,14 @@ def main():
     stellung = ss(text, spruchschluessel, walzen2)
 
     text_aufgeteilt = aufteilen(text, schlusseln)
-    print(text_aufgeteilt)
+    #print(text_aufgeteilt)
 
     steckerrueckgabe, stecker_json = stecken(stecker, text_aufgeteilt)
-    print(steckerrueckgabe)
+    #print(steckerrueckgabe)
 
 
     text_walzen = walzen(steckerrueckgabe, walzen2, stellung)
-    print(text_walzen)
+    #print(text_walzen)
 
     steckerrueckgabe, stecker_json = stecken(stecker, text_aufgeteilt, stecker_json)
     #print(steckerrueckgabe)
@@ -119,14 +119,14 @@ def date():
     tag = int(tag) - 1
     steck = liste[tag][0]
     walz = liste[tag][1]
-    print(steck)
-    print(walz)
+    #print(steck)
+    #print(walz)
     return steck, walz
 
 def walzen_main(text, walze, stellung = None):
     walzen = walze.split(" ")
     pos = list(stellung)
-
+    """
     for i in range(len(walzen)):
         if walzen[i] == "1":
             pass #1
@@ -150,7 +150,43 @@ def walzen_main(text, walze, stellung = None):
     text = UKW.ukw_walze(text)
     text, _ = Ix1.i_walze(text, pos_1)
     text, _ = Ix3.iii_walze(text, pos_3)
-    text, _ = Ix5.v_walze(text, pos_5)
+    text, _ = Ix5.v_walze(text, pos_5)"""
+
+    for i in range(len(walzen)):
+        if walzen[i] == "1":
+            text, pos[i] = Ix1.i_walze(text, pos[i])
+        if walzen[i] == "2":
+            text, pos[i] = Ix2.ii_walze(text, pos[i])
+        if walzen[i] == "3":
+            text, pos[i] = Ix3.iii_walze(text, pos[i])
+        if walzen[i] == "4":
+            text, pos[i] = Ix4.iv_walze(text, pos[i])
+        if walzen[i] == "5":
+            text, pos[i] = Ix5.v_walze(text, pos[i])
+
+
+    #Für Tests
+
+
+
+    text = UKW.ukw_walze(text)
+
+
+
+
+
+    for i in range(len(walzen) -1 , -1, -1):
+
+        if walzen[i] == "1":
+            text, pos[i] = Ix1.i_walze(text, pos[i])
+        if walzen[i] == "2":
+            text, pos[i] = Ix2.ii_walze(text, pos[i])
+        if walzen[i] == "3":
+            text, pos[i] = Ix3.iii_walze(text, pos[i])
+        if walzen[i] == "4":
+            text, pos[i] = Ix4.iv_walze(text, pos[i])
+        if walzen[i] == "5":
+            text, pos[i] = Ix5.v_walze(text, pos[i])
 
 
     return text

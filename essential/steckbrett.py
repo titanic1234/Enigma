@@ -52,15 +52,11 @@ def steckverbindungen(stecker, text, stecker_json=None):
     text_liste = list(text)
     text_steckbrett = ""
     for i in text_liste:
-        #print(i)
+
         y = stecker_json[i]
         if y == None:
             y = i
         text_steckbrett = str(text_steckbrett) + str(y)
-        #print(text_steckbrett)
 
 
-    #print(stecker)
-    #print(stecker_json)
-    #print(text_steckbrett)
     return text_steckbrett, stecker_json

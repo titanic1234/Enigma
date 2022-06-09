@@ -16,17 +16,16 @@ def v_walze(text, pos):
     b = 0
 
     for i in text:
-        #print(a)
-        #print(b)
+
         if i == " ":
             text_v_liste.append(" ")
             continue
         ab_in = ab.index(i)
-        #print(ab_in)
+
         if int((ab_in + a) / 26) >= 1:
             b = int(int(int(ab_in + a) / 26) * 26)
         x = V[ab_in+a-b]
-        #print(x)
+
         text_v_liste.append(x)
         a += 1
 

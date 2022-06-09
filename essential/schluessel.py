@@ -20,9 +20,8 @@ def erkennung(schluessel, text, walzen):
     f = True
     if schluessel[1] == "pass":
         f = False
-    if int(schluessel[1]) != len(list(text)) and f:
-        pass
-        #return False
+    elif int(schluessel[1]) != len(list(text)) and f:
+        return False
 
     text_rueckgabe = walze.walzen_main(schluessel[2].split(" ")[1], walzen, schluessel[2].split(" ")[0])
     return text_rueckgabe

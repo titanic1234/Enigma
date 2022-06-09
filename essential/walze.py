@@ -15,27 +15,39 @@ def walzen_main(text, walze, stellung = None):
 
     for i in range(len(walzen)):
         if walzen[i] == "1":
-            pass #1
+            text, pos[i] = Ix1.i_walze(text, pos[i])
         if walzen[i] == "2":
-            pass #2
+            text, pos[i] = Ix2.ii_walze(text, pos[i])
         if walzen[i] == "3":
-            pass #3
+            text, pos[i] = Ix3.iii_walze(text, pos[i])
         if walzen[i] == "4":
-            pass #4
+            text, pos[i] = Ix4.iv_walze(text, pos[i])
         if walzen[i] == "5":
-            pass #5
+            text, pos[i] = Ix5.v_walze(text, pos[i])
 
 
     #Für Tests
 
 
-    text, pos_5 = Ix5.v_walze(text, pos[0])
-    text, pos_3 = Ix3.iii_walze(text, pos[1])
-    text, pos_1 = Ix1.i_walze(text, pos[2])
+
     text = UKW.ukw_walze(text)
-    text, _ = Ix1.i_walze(text, pos_1)
-    text, _ = Ix3.iii_walze(text, pos_3)
-    text, _ = Ix5.v_walze(text, pos_5)
+
+
+
+
+
+    for i in range(len(walzen), 0):
+        print(i)
+        if walzen[i] == "1":
+            text, pos[i] = Ix1.i_walze(text, pos[i])
+        if walzen[i] == "2":
+            text, pos[i] = Ix2.ii_walze(text, pos[i])
+        if walzen[i] == "3":
+            text, pos[i] = Ix3.iii_walze(text, pos[i])
+        if walzen[i] == "4":
+            text, pos[i] = Ix4.iv_walze(text, pos[i])
+        if walzen[i] == "5":
+            text, pos[i] = Ix5.v_walze(text, pos[i])
 
 
     return text

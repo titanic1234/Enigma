@@ -8,25 +8,24 @@ ab = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
 
 II = ['A', 'J', 'D', 'K', 'S', 'I', 'R', 'U', 'X', 'B', 'L', 'H', 'W', 'T', 'M', 'C', 'Q', 'G', 'Z', 'N', 'P', 'Y', 'F', 'V', 'O', 'E']
 
-def i_walze(text, pos):
+def ii_walze(text, pos):
     text = list(text)
     text_i_liste = []
-    print(pos)
+
     a = 0 + II.index(pos)
     b = 0
 
     for i in text:
-        #print(a)
-        #print(b)
+
         if i == " ":
             text_i_liste.append(" ")
             continue
         ab_in = ab.index(i)
-        #print(ab_in)
+
         if int((ab_in + a) / 26) >= 1:
             b = int(int(int(ab_in + a) / 26) * 26)
         x = II[ab_in+a-b]
-        #print(x)
+
         text_i_liste.append(x)
         a += 1
 
