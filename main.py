@@ -116,7 +116,7 @@ def date():
              ["DY IN BV GR AM LO FP HT EX UW", "3 1 4"], ["CR FV AI DK OT MQ EU BX LP GJ", "2 3 5"],
              ["DJ AT CV IO ER QS LW PZ FN BH", "3 2 1"], ["IS EV MX RW DT UZ JQ AO CH NY", "4 3 2"],
              ["SZ GT DV KU FO MY EW JN IX LQ", "1 5 3"]]
-    tag = 1 - 1
+    tag = int(tag) - 1
     steck = liste[tag][0]
     walz = liste[tag][1]
     print(steck)
@@ -139,10 +139,6 @@ def walzen_main(text, walze, stellung = None):
         if walzen[i] == "5":
             pass #5
 
-
-    for i in walze:
-        if i == "1":
-            text, pos = Ix1.v_walze(text, pos)
 
 
     #Für Tests

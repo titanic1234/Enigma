@@ -33,5 +33,7 @@ def v_walze(text, pos):
 
     text_v = "".join(text_v_liste)
 
-    return text_v, V.insert(a)
+    a = a % 26
+
+    return text_v, V[a]
 

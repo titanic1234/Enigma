@@ -32,4 +32,6 @@ def iii_walze(text, pos):
 
     text_iii = "".join(text_iii_liste)
 
-    return text_iii, III.insert(a)
+    a = a % 26
+
+    return text_iii, III[a]

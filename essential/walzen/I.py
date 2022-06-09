@@ -34,4 +34,6 @@ def i_walze(text, pos):
 
     text_i = "".join(text_i_liste)
 
-    return text_i, I.insert(a)
+    a = a % 26
+
+    return text_i, I[a]
