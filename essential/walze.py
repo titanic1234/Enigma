@@ -9,7 +9,7 @@ import walzen.IV as Ix4
 import walzen.V as Ix5
 import walzen.ukw as UKW
 
-def walzen_main(text, walze, stellung = None):
+def walzen_main(text, walze, schluesselung, stellung = None):
     walzen = walze.split(" ")
     pos = list(stellung)
 
@@ -24,7 +24,7 @@ def walzen_main(text, walze, stellung = None):
             text, pos[i] = Ix4.iv_walze(text, pos[i])
         if walzen[i] == "5":
             text, pos[i] = Ix5.v_walze(text, pos[i])
-
+        print(text)
 
     #Für Tests
 

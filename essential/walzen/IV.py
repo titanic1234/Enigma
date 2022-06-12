@@ -8,7 +8,9 @@ ab = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
 
 IV = ['E', 'S', 'O', 'V', 'P', 'Z', 'J', 'A', 'Y', 'Q', 'U', 'I', 'R', 'H', 'X', 'L', 'N', 'F', 'T', 'G', 'K', 'D', 'C', 'M', 'W', 'B']
 
-def iv_walze(text, pos):
+def iv_walze(text, pos, schluesselung):
+    if schluesselung == "0": c = 1
+    else: c = -1
     text = list(text)
     text_i_liste = []
 
@@ -24,10 +26,10 @@ def iv_walze(text, pos):
 
         if int((ab_in + a) / 26) >= 1:
             b = int(int(int(ab_in + a) / 26) * 26)
-        x = IV[ab_in + a - b]
+        x = IV[(ab_in+a-b) % 26]
 
         text_i_liste.append(x)
-        a += 1
+        a += c
 
 
     text_i = "".join(text_i_liste)

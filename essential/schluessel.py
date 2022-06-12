@@ -12,7 +12,7 @@ def erkennung(schluessel, text, walzen):
     print(f"Die Nachricht wurde laut dem Spruchschlüssel um {zeit[0] + zeit[1]}:{zeit[2] + zeit[3]} geschickt.")
     wahr = input("Wenn das von der Uhrzeit stimmen kann tippe jetzt bitte 1 und Enter!\n")
     if wahr != "1":
-        return False
+        return False, None, None, None
 
 
 
@@ -21,7 +21,10 @@ def erkennung(schluessel, text, walzen):
     if schluessel[1] == "pass":
         f = False
     elif int(schluessel[1]) != len(list(text)) and f:
-        return False
+        return False, None, None, None
 
-    text_rueckgabe = walze.walzen_main(schluessel[2].split(" ")[1], walzen, schluessel[2].split(" ")[0])
-    return text_rueckgabe
+    print(schluessel)
+
+    #text_rueckgabe = walze.walzen_main(schluessel[2].split(" ")[1], walzen, schluessel[2].split(" ")[0])
+    return True, schluessel[2].split(" ")[1], walzen, schluessel[2].split(" ")[0]
+    #return text_rueckgabe

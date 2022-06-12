@@ -15,6 +15,7 @@ def aufteilen(text, schluesseln):
     text = text.casefold()
     text = text.upper()
 
+
     #print(text)
 
 
@@ -58,12 +59,16 @@ def aufteilen(text, schluesseln):
     
     #"""
 
+
+
     #Die Nachricht wird gefiltert. Zeichen etc. werden entfernt. (So wie bei der echten Enigma)
 
     while i <= x:
         #print(i)
         #print(x)
         #print(liste)
+
+
 
         if liste[i] == " ":
             if schluesseln == "0":
@@ -77,11 +82,34 @@ def aufteilen(text, schluesseln):
             x -= 1
             continue
         try:
-            if liste[i] == "C" and liste[i+1] == "H" or liste[i] == "C" and liste[i+1] == "K":
-                liste[i] = "Q"
-                liste.remove(liste[i+1])
-                x -= 1
-                continue
+            if schluesseln == "0":
+
+                if liste[i] == "C" and liste[i+1] == "H":
+                    liste[i] = "Q"
+                    #liste.remove(liste[i+1])
+                    #x -= 1
+                    continue
+
+                if liste[i] == "C" and liste[i+1] == "K":
+                    liste[i] = "Q"
+                    #liste.remove(liste[i+1])
+                    #x -= 1
+                    continue
+            elif schluesseln == "1":
+                b = 1  # b ist nur 2, falls die nächste Stelle ein Leerzeichen ist, um ein QH oder QK trotzdem zu finden
+                if liste[i + 1] == " ":
+                    b = 2
+                if liste[i] == "Q" and liste[i + b] == "H":
+                    liste[i] = "C"
+                    # liste.remove(liste[i+1])
+                    # x -= 1
+                    continue
+
+                if liste[i] == "Q" and liste[i + b] == "K":
+                    liste[i] = "C"
+                    # liste.remove(liste[i+1])
+                    # x -= 1
+                    continue
         except Exception:
             pass
 
@@ -127,14 +155,14 @@ def aufteilen(text, schluesseln):
 
 
         i += 1
-        #print(i)
+
 
         #"""
 
 
 
 
-    #print(liste)
+
 
 
     #Weitere Variablen
@@ -148,34 +176,29 @@ def aufteilen(text, schluesseln):
 
     #Die Nachricht wird von Liste zu einem str und in Fünfergruppen eingeteilt
 
-    for i in range(0, len(liste)):
-        if len(zwischenliste) <= 4:
+    if schluesseln == "0":
 
-            zwischenliste.append(liste[i])
-            #print(zwischenliste)
-            #print("\n")
-            #time.sleep(1)
-        else:
-            #global str_fertig
-            #print(str_fertig)
-            #print("\nString vorher\n")
-            zwischenliste.append(" ")
+        for i in range(0, len(liste)):
+            if len(zwischenliste) <= 4:
+
+                zwischenliste.append(liste[i])
+
+            else:
+
+                zwischenliste.append(" ")
+                str_fertig = str_fertig + "".join(zwischenliste)
+
+                zwischenliste = []
+                zwischenliste.append(liste[i])
+
+
+        if zwischenliste != []:
             str_fertig = str_fertig + "".join(zwischenliste)
-            #print(str_fertig)
-            #print("\nString nachher")
-            zwischenliste = []
-            zwischenliste.append(liste[i])
-            #print(zwischenliste)
-            #print("\n")
-            #time.sleep(1)
 
-    if zwischenliste != []:
-        str_fertig = str_fertig + "".join(zwischenliste)
+    else:
 
-    #print("Fertiger str")
-    #print(str_fertig)
+        str_fertig = "".join(liste)
+        str_fertig.replace("X", " ")
 
 
-    #aufgeteielt = None
-    #print(text)
     return str_fertig

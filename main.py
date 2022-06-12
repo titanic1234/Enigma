@@ -20,12 +20,14 @@ import datetime
 
 #SZ GT DV KU FO MY EW JN IX LQ
 
+
+#Koordiniert alles. Alle Infos laufen hier her
 def main():
     schlusseln, spruchschluessel, text = infos()
 
     stecker, walzen2 = date()
 
-    stellung = ss(text, spruchschluessel, walzen2)
+    stellung = ss(text, spruchschluessel, walzen2, schlusseln)
 
     text_aufgeteilt = aufteilen(text, schlusseln)
     #print(text_aufgeteilt)
@@ -34,10 +36,10 @@ def main():
     #print(steckerrueckgabe)
 
 
-    text_walzen = walzen(steckerrueckgabe, walzen2, stellung)
+    text_walzen = walzen(steckerrueckgabe, walzen2, schlusseln,  stellung)
     #print(text_walzen)
 
-    steckerrueckgabe, stecker_json = stecken(stecker, text_aufgeteilt, stecker_json)
+    steckerrueckgabe, stecker_json = stecken(stecker, text_walzen, stecker_json)
     #print(steckerrueckgabe)
 
     print("-----------------------------------------\n")
@@ -49,28 +51,43 @@ def main():
 
 
 
-
+#Alle Eingaben fürs Programm
 
 def infos():
     print("Willkommen bei dem Enigmaprogramm zur Ver- und Entschlüsselung von Nachrichten!")
-    schluesseln = str(input("Willst du deine Nachricht verschlüsseln? Dann tippe jetzt 0 und Enter. Wenn du sie entschlüsseln möchtest, tippe 1 und Enter! "))
+    while True:
+        schluesseln = str(input("Willst du deine Nachricht verschlüsseln? Dann tippe jetzt 0 und Enter. Wenn du sie entschlüsseln möchtest, tippe 1 und Enter! "))
+        if schluesseln in ["0", "1"]:  break
     #stecker = input("Bitte gib hier die Steckverbindungen ein. Bitte jeweils in Zweiergruppen wie z. B. AB CD. Bitte jeden Buchstaben nur einmal! ")
-    spruchschluessel = input("Bitte gib hier den Spruchschlüssel ein. Z. B. 2200-204-QWE EWG ")
+    while True:
+        spruchschluessel = input("Bitte gib hier den Spruchschlüssel ein. Z. B. 2200-204-QWE EWG ")
+        try:
+            test = spruchschluessel.split("-")[2].split(" ")[1]
+        except Exception:
+            print("Dieser Spruchschlüssel ist nicht gültig. Bitte halte dich an die Vorgaben!")
+        else:
+            break
     #walzen2 = input("Bitte gib jetzt noch an, welche Walzen genutzt werden sollen und achte bitte auf die Reihenfolge. Z. B. 1 5 3: ")
-    text = input("Bitte gib jetzt den gesammten Text ein: ")
+    while True:
+        text = input("Bitte gib jetzt den gesammten Text ein: ")
+        if text != "":
+            break
 
     return schluesseln, spruchschluessel, text
 
 
 #ss für Spruchschlüssel
-def ss(text, schluessel, walzen):
-    ans = s.erkennung(schluessel, text, walzen)
+def ss(text, schluessel, walzen, schluesseln):
+    ans, text, walzen, text2 = s.erkennung(schluessel, text, walzen)
     if ans == False:
         print("Die Nachricht wurde als Falsch erkannt!")
         sys.exit(0)
+
+    ans, pos = walzen_main(text, walzen, schluesseln, text2)
     return ans
 
 
+#Die Texteingabe wird in 5-er Gruppen aufgeteilt und Leerzeichen, Zahlen und Sonderzeichen werden entfernt/ersetzt
 def aufteilen(text, schluesseln):
 
     aufgeteilt = essential.aufteilung.aufteilen(text, schluesseln)
@@ -79,6 +96,7 @@ def aufteilen(text, schluesseln):
 
 
 
+#Das Steckerbrett wird aufgerufen
 def stecken(stecker, text, stecker_json_=None): #spruchschluessel,
 
     if stecker_json_ == None:
@@ -91,13 +109,25 @@ def stecken(stecker, text, stecker_json_=None): #spruchschluessel,
     return steckerrueckgabe, stecker_json
 
 
-def walzen(text, walzen, stellung):
 
-    text_rueckgabe = walzen_main(text, walzen, stellung)#essential.walze.walzen_main(text, walzen, stellung)
+#die Walzen werden aufgerufen
+def walzen(text, walzen, schluesseln, stellung):
+    print(stellung)
+
+    text_rueckgabe, pos = walzen_main(text, walzen, schluesseln, stellung)#essential.walze.walzen_main(text, walzen, stellung)
+
+    print(pos)
+
+    pos2, pos3 = walzen_main(pos, walzen, "1", pos)
+
+    print(pos2)
+    print(pos3)
 
     return text_rueckgabe
 
 
+
+#Es wird der Tag im Monat geprüft, um die richtigen Steckverbindungen und Walzen für den Tag zu nutzen
 def date():
     tag = datetime.datetime.now().strftime("%d")
     liste = [["DP BM NZ CK OV HQ AP UY SW JO", "2 1 3"], ["BN HU EG PY KQ CP OS JW AI VZ", "4 5 1"],
@@ -123,7 +153,7 @@ def date():
     #print(walz)
     return steck, walz
 
-def walzen_main(text, walze, stellung = None):
+def walzen_main(text, walze, schluesselung, stellung = None):
     walzen = walze.split(" ")
     pos = list(stellung)
     """
@@ -154,15 +184,15 @@ def walzen_main(text, walze, stellung = None):
 
     for i in range(len(walzen)):
         if walzen[i] == "1":
-            text, pos[i] = Ix1.i_walze(text, pos[i])
+            text, pos[i] = Ix1.i_walze(text, pos[i], schluesselung)
         if walzen[i] == "2":
-            text, pos[i] = Ix2.ii_walze(text, pos[i])
+            text, pos[i] = Ix2.ii_walze(text, pos[i], schluesselung)
         if walzen[i] == "3":
-            text, pos[i] = Ix3.iii_walze(text, pos[i])
+            text, pos[i] = Ix3.iii_walze(text, pos[i], schluesselung)
         if walzen[i] == "4":
-            text, pos[i] = Ix4.iv_walze(text, pos[i])
+            text, pos[i] = Ix4.iv_walze(text, pos[i], schluesselung)
         if walzen[i] == "5":
-            text, pos[i] = Ix5.v_walze(text, pos[i])
+            text, pos[i] = Ix5.v_walze(text, pos[i], schluesselung)
 
 
     #Für Tests
@@ -178,18 +208,18 @@ def walzen_main(text, walze, stellung = None):
     for i in range(len(walzen) -1 , -1, -1):
 
         if walzen[i] == "1":
-            text, pos[i] = Ix1.i_walze(text, pos[i])
+            text, pos[i] = Ix1.i_walze(text, pos[i], schluesselung)
         if walzen[i] == "2":
-            text, pos[i] = Ix2.ii_walze(text, pos[i])
+            text, pos[i] = Ix2.ii_walze(text, pos[i], schluesselung)
         if walzen[i] == "3":
-            text, pos[i] = Ix3.iii_walze(text, pos[i])
+            text, pos[i] = Ix3.iii_walze(text, pos[i], schluesselung)
         if walzen[i] == "4":
-            text, pos[i] = Ix4.iv_walze(text, pos[i])
+            text, pos[i] = Ix4.iv_walze(text, pos[i], schluesselung)
         if walzen[i] == "5":
-            text, pos[i] = Ix5.v_walze(text, pos[i])
+            text, pos[i] = Ix5.v_walze(text, pos[i], schluesselung)
 
 
-    return text
+    return text, "".join(pos)
 
 if __name__ == "__main__":
     main()
