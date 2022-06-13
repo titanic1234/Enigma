@@ -223,3 +223,13 @@ def walzen_main(text, walze, schluesselung, stellung = None):
 
 if __name__ == "__main__":
     main()
+   
+
+
+
+
+
+
+""" 
+Licensed by Jonte
+"""
