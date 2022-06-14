@@ -1,3 +1,8 @@
+#Datei wird nicht genutzt. Der Code steht in einer Funktion in main.py
+
+
+
+
 import time
 import os
 import sys
