@@ -4,6 +4,8 @@ import os
 import sys
 
 
+#Text geht durch Walze
+
 ab = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 III = ['B', 'D', 'F', 'H', 'J', 'L', 'C', 'P', 'R', 'T', 'X', 'V', 'Z', 'N', 'Y', 'E', 'I', 'W', 'G', 'A', 'K', 'M', 'U', 'S', 'Q', 'O']#['Q', 'U', 'D', 'L', 'Y', 'R', 'F', 'E', 'K', 'O', 'N', 'V', 'Z', 'A', 'X', 'W', 'H', 'M', 'G', 'P', 'J', 'B', 'S', 'I', 'C', 'T']
