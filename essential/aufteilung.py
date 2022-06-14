@@ -3,6 +3,8 @@ import os
 import asyncio
 
 
+#Die Nachricht wird in Großbuchstaben umgewandelt; Zahlen werden ausgeschrieben; Sonderzeichen werden gelöscht und Leerzeichen durch ein X ersetzt; Nachricht wird in Fünfergruppen eingeteilt
+
 def aufteilen(text, schluesseln):
 
     if schluesseln == "0":
