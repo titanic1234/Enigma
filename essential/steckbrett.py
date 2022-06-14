@@ -3,6 +3,9 @@ import sys
 import time
 import asyncio
 
+
+#Die Steckverbindungen werden erkannt und der Text geht durchs Steckerbrett. Einmal vor und nach den Walzen.
+
 def steckverbindungen(stecker, text, stecker_json=None):
     stecker = stecker.upper()
     stecker = stecker.split(" ")
