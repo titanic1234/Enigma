@@ -4,6 +4,8 @@ import time
 import asyncio
 import walze
 
+#Der Spruichschlüssel wird ausgelesen und die Uhrzeit wird abgefragt.
+
 def erkennung(schluessel, text, walzen):
     if schluessel == None:
         return None
