@@ -4,6 +4,8 @@ import os
 import sys
 
 
+#Text geht durch Umkehrwalze
+
 ab = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 UKW = ['E', 'J', 'M', 'Z', 'A', 'L', 'Y', 'X', 'V', 'B', 'W', 'F', 'C', 'R', 'Q', 'U', 'O', 'N', 'T', 'S', 'P', 'I', 'K', 'H', 'G', 'D']#['G', 'E', 'K', 'P', 'B', 'T', 'A', 'U', 'M', 'O', 'C', 'N', 'I', 'L', 'J', 'D', 'X', 'Z', 'Y', 'F', 'H', 'W', 'V', 'Q', 'S', 'R']
